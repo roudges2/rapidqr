@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body {
+            background-color: #1a202c;
+        }
+    </style>
+    <title><%= SITE_NAME %> Code Generator</title>
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            const favicon = document.querySelector("link[rel~='icon']");
+            if (favicon) {
+                favicon.href = isDarkMode ? '/img/logo-dark.png' : '/img/logo.png';
+            }
+
+            const contentSelect = document.getElementById("content");
+            const dataInput = document.getElementById("data");
+
+            contentSelect.addEventListener("change", function () {
+                switch (contentSelect.value) {
+                    case "url":
+                        dataInput.placeholder = "Enter URL (https://<%= SITE_NAME %>)";
+                        break;
+                    case "text":
+                        dataInput.placeholder = "Enter Text";
+                        break;
+                    case "email":
+                        dataInput.placeholder = "Enter Email (example@example.com)";
+                        break;
+                    case "phone":
+                        dataInput.placeholder = "Enter Phone (+49)";
+                        break;
+                    case "sms":
+                        dataInput.placeholder = "Enter SMS (+49)";
+                        break;
+                    case "geo":
+                        dataInput.placeholder = "Enter Geo Location (37.7749,-122.4194)";
+                        break;
+                    default:
+                        dataInput.placeholder = "Select Something...";
+                        break;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body class="text-white flex flex-col items-center justify-center min-h-screen">
+
+    <h1 class="text-4xl mb-4"><%= SITE_NAME %> Code Generator</h1>
+
+    <form action="/generate" method="GET" class="p-2 mb-8 max-w-md w-full">
+        <label for="content" class="block mb-2">Select Content Type:</label>
+        <select id="content" name="content" class="w-full p-2 bg-gray-800 border border-gray-700 rounded mb-4">
+            <option value="url">URL</option>
+            <option value="text">Text</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone Number</option>
+            <option value="sms">SMS</option>
+            <option value="geo">Geo Location</option>
+        </select>
+
+        <label for="data" class="block mb-2">Enter Data:</label>
+        <input type="text" id="data" name="data" class="w-full p-2 bg-gray-800 border border-gray-700 rounded mb-4"
+            placeholder="Enter Data">
+        <span>Need Help? <a href="/help" class="underline">Find Help Here :)</a></span>
+        <br>
+        <span>Developer? <a href="/api/documentation" class="underline">Find the Public API Here.</a></span>
+        
+        <button type="submit" class="p-2 mt-2 bg-blue-500 text-white rounded w-full">Generate QR Code</button>
+    </form>
+
+    <% if (qrCode) { %>
+        <img src="<%= qrCode %>" alt="QR Code" class="mt-4 rounded-lg max-w-full">
+    <% } %>
+
+</body>
+
+</html>

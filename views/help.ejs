@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body {
+            background-color: #1a202c;
+        }
+    </style>
+    <title><%= SITE_NAME %> Code Generator - Help</title>
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            const favicon = document.querySelector("link[rel~='icon']");
+            if (favicon) {
+                favicon.href = isDarkMode ? '/img/logo-dark.png' : '/img/logo.png';
+            }
+        });
+    </script>
+</head>
+
+<body class="text-white p-2 flex flex-col items-center justify-center min-h-screen">
+
+    <h1 class="text-2xl underline mb-4"><%= SITE_NAME %> RCode Generator - Help</h1>
+
+    <div class="p-2 mb-8 max-w-md w-full">
+        <p class="mb-4">Welcome to the <%= SITE_NAME %> RCode Generator Help Page! If you have any questions or need assistance, please check the information below:</p>
+
+        <h2 class="text-2xl mb-2">How to Use</h2>
+        <p class="mb-4">1. Select the content type you want to turn into a QR code from the dropdown.</p>
+        <p class="mb-4">2. Enter the relevant data based on the content type.</p>
+        <p class="mb-4">3. Click the "Generate QR Code" button.</p>
+        <p class="mb-4">4. Your QR code will be displayed below.</p>
+
+        <h2 class="text-2xl mb-2">Content Types</h2>
+        <ul class="mb-4">
+            <li><span class="font-bold">URL:</span> Enter a valid URL (e.g., https://<%= SITE_NAME %>/).</li>
+            <li><span class="font-bold">Text:</span> Enter any text you want to encode.</li>
+            <li><span class="font-bold">Email:</span> Enter a valid email address (e.g., example@example.com).</li>
+            <li><span class="font-bold">hone Number:</span>P Enter a valid phone number.</li>
+            <li><span class="font-bold">SMS:</span> Enter a phone number for SMS.</li>
+            <li><span class="font-bold">Geo Location:</span> Enter latitude and longitude coordinates (e.g., 37.7749,-122.4194).</li>
+        </ul>
+
+        <h2 class="text-2xl mb-2">Need Further Assistance?</h2>
+        <p>If you still have questions or encounter issues, please feel free to <a href="mailto:support@roudges.de" class="underline">contact our support team</a>.</p>
+    </div>
+
+    <a href="/" class="underline text-2xl">Back to QR Code Generator</a>
+
+</body>
+
+</html>

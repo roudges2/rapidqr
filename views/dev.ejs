@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body {
+            background-color: #1a202c;
+        }
+    </style>
+    <title><%= SITE_NAME %> Code Generator - API Documentation</title>
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            const favicon = document.querySelector("link[rel~='icon']");
+            if (favicon) {
+                favicon.href = isDarkMode ? '/img/logo-dark.png' : '/img/logo.png';
+            }
+        });
+    </script>
+</head>
+
+<body class="text-white p-2 flex flex-col items-center justify-center min-h-screen">
+
+    <h1 class="text-4xl mb-4"><%= SITE_NAME %> Code Generator API Documentation</h1>
+
+    <div class="p-2 mb-6 max-w-md w-full">
+        <p class="mb-4">Welcome to the API documentation for the <%= SITE_NAME %> Code Generator. This API allows you to generate QR codes based on different content types.</p>
+        <h2 class="text-2xl mb-2">Base URL</h2>
+        <code class="bg-gray-800 p-2 rounded mb-4">https://<%= SITE_NAME %>/api/</code>
+        <div class="mt-8"></div>
+        <h2 class="text-2xl mb-2">Generate QR Code</h2>
+        <p>To generate a QR code, make a GET request to the following endpoint:</p>
+        <code class="bg-gray-800 p-2 rounded">/api/generate?content=[content_type]&data=[data]</code>
+        <p>Parameters:</p>
+        <ul class="mb-4">
+            <li><code>content</code>: Type of content (e.g., url, text, email, phone, sms, geo).</li>
+            <li><code>data</code>: Data to encode.</li>
+        </ul>
+        <p>Example:</p>
+        <code class="bg-gray-800 p-2 rounded">/api/generate?content=url&data=https://<%= SITE_NAME %></code>
+
+        <h2 class="text-2xl mb-2 mt-4">Content Types</h2>
+        <p>The following content types are supported:</p>
+        <ul class="mb-4">
+            <li><code>url</code>: URL</li>
+            <li><code>text</code>: Text</li>
+            <li><code>email</code>: Email</li>
+            <li><code>phone</code>: Phone Number</li>
+            <li><code>sms</code>: SMS</li>
+            <li><code>geo</code>: Geo Location</li>
+        </ul>
+
+    </div>
+
+    <a href="/" class="underline mt-4">Back to QR Code Generator</a>
+
+</body>
+
+</html>
